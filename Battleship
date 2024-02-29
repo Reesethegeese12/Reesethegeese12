@@ -1,0 +1,163 @@
+import random
+import sys
+import math
+
+import math
+from pygame import mixer
+
+hits=0
+misses=0
+turns=0
+
+
+mixer.init()   
+
+def play_music(file_path, volume=1.5):
+    mixer.music.load(file_path)
+    mixer.music.set_volume(volume)
+    mixer.music.play()
+    
+play_music("images/1942 Arcade In-Game Music.mp3") 
+
+
+
+
+collum1 = ["A1" , "A2", "A3" , "A4" , "A5" , "A6" , "A7" , "A8" , "A9" , "A10" , "B1" , "B2", "B3" , "B4" , "B5" , "B6" , "B7" , "B8" , "B9" , "B10" , "C1" , "C2", "C3" , "C4" , "C5" , "C6" , "C7" , "C8" , "C9" , "C10" , "D1" , "D2", "D3" , "D4" , "D5" , "D6" , "D7" , "D8" , "D9" , "D10" , "E1" , "E2", "E3" , "E4" , "E5" , "E6" , "E7" , "E8" , "E9" , "E10" , "F1" , "F2", "F3" , "F4" , "F5" , "F6" , "F7" , "F8" , "F9" , "F10" , "G1" , "G2", "G3" , "G4" , "G5" , "G6" , "G7" , "G8" , "G9" , "G10" , "H1" , "H2", "H3" , "H4" , "H5" , "H6" , "H7" , "H8" , "H9" , "H10" , "I1" , "I2", "I3" , "I4" , "I5" , "I6" , "I7" , "I8" , "I9" , "I10" , "J1" , "J2", "J3" , "J4" , "J5" , "J6" , "J7" , "J8" , "J9" , "J10"]
+answer=["M"]*100
+
+
+
+
+
+
+#answer[shipspot]="H"
+
+#colums for the seeable baord
+
+def print_board():
+    print (f"|{collum1[0]}| , |{collum1[1]}| , |{collum1[2]}| , |{collum1[3]}| , |{collum1[4]}| , |{collum1[5]}| , |{collum1[6]}| , |{collum1[7]}| , |{collum1[8]}| , |{collum1[9]}|")
+    print (f"|{collum1[10]}| , |{collum1[11]}| , |{collum1[12]}| , |{collum1[13]}| , |{collum1[14]}| , |{collum1[15]}| , |{collum1[16]}| , |{collum1[17]}| , |{collum1[18]}| , |{collum1[19]}|")
+    print (f"|{collum1[20]}| , |{collum1[21]}| , |{collum1[22]}| , |{collum1[23]}| , |{collum1[24]}| , |{collum1[25]}| , |{collum1[26]}| , |{collum1[27]}| , |{collum1[28]}| , |{collum1[29]}|")
+    print (f"|{collum1[30]}| , |{collum1[31]}| , |{collum1[32]}| , |{collum1[33]}| , |{collum1[34]}| , |{collum1[35]}| , |{collum1[36]}| , |{collum1[37]}| , |{collum1[38]}| , |{collum1[39]}|")
+    print (f"|{collum1[40]}| , |{collum1[41]}| , |{collum1[42]}| , |{collum1[43]}| , |{collum1[44]}| , |{collum1[45]}| , |{collum1[46]}| , |{collum1[47]}| , |{collum1[48]}| , |{collum1[49]}|")
+    print (f"|{collum1[50]}| , |{collum1[51]}| , |{collum1[52]}| , |{collum1[53]}| , |{collum1[54]}| , |{collum1[55]}| , |{collum1[56]}| , |{collum1[57]}| , |{collum1[58]}| , |{collum1[59]}|")
+    print (f"|{collum1[60]}| , |{collum1[61]}| , |{collum1[62]}| , |{collum1[63]}| , |{collum1[64]}| , |{collum1[65]}| , |{collum1[66]}| , |{collum1[67]}| , |{collum1[68]}| , |{collum1[69]}|")
+    print (f"|{collum1[70]}| , |{collum1[71]}| , |{collum1[72]}| , |{collum1[73]}| , |{collum1[74]}| , |{collum1[75]}| , |{collum1[76]}| , |{collum1[77]}| , |{collum1[78]}| , |{collum1[79]}|")
+    print (f"|{collum1[80]}| , |{collum1[81]}| , |{collum1[82]}| , |{collum1[83]}| , |{collum1[84]}| , |{collum1[85]}| , |{collum1[86]}| , |{collum1[87]}| , |{collum1[88]}| , |{collum1[89]}|")
+    print (f"|{collum1[90]}| , |{collum1[91]}| , |{collum1[92]}| , |{collum1[93]}| , |{collum1[94]}| , |{collum1[95]}| , |{collum1[96]}| , |{collum1[97]}| , |{collum1[98]}| , |{collum1[99]}|")
+
+
+with open('images/text.txt', 'r') as f:
+    contents = f.read()
+
+print (contents)
+print (hits)
+print (misses)
+
+#method for making/ placing ships on the invisible baord for the player to guess
+
+def pick_spots():
+        direction = random.randint(1, 4)
+
+        if direction ==1:
+            spot_a = random.randint(10,99)
+            spot_b= spot_a+10
+        elif direction == 2:
+            spot_a=9
+            while spot_a == 9 or spot_a == 19 or spot_a == 29 or spot_a == 39 or spot_a == 49 or spot_a == 59 or spot_a == 69 or spot_a == 79 or spot_a == 89 or spot_a == 99:
+                spot_a = random.randint (0,99)
+            spot_b=spot_a+1
+        elif direction == 3:
+            spot_a = random.randint(0,89)
+            spot_b=spot_a-10
+        elif direction == 4:
+            spot_a=0
+            while spot_a == 10 or spot_a == 20 or spot_a == 30 or spot_a == 40 or spot_a == 50 or spot_a == 60 or spot_a == 70 or spot_a == 80 or spot_a == 90:
+                spot_a = random.randint (1,99)
+            spot_b=spot_a-1
+        return(spot_a, spot_b)
+
+
+ship_1_a, ship_1_b = pick_spots()
+answer[ship_1_a]="H"
+answer[ship_1_b]="H"
+while True:
+    ship_2_a, ship_2_b = pick_spots()
+    if answer [ship_2_a] == "H" or answer[ship_2_b] == "H":
+        pass
+    else:
+        break
+answer[ship_2_a]="H"
+answer[ship_2_b]="H"
+while True:
+    ship_3_a, ship_3_b = pick_spots()
+    if answer [ship_3_a] == "H" or answer[ship_3_b] == "H":
+        pass
+    else:
+        break
+answer[ship_3_a]="H"
+answer[ship_3_b]="H"
+while True:
+    ship_4_a, ship_4_b = pick_spots()
+    if answer [ship_4_a] == "H" or answer[ship_4_b] == "H":
+        pass
+    else:
+        break
+answer[ship_4_a]="H"
+answer[ship_4_b]="H"
+
+
+
+
+#"S" therefore means that there will be or is a ship there, 
+#when the "cheat" has been texted by the player / user, the other baord will ship up and the "S"
+#will represent the ship
+    
+#print (f"Game Over. You Took {turns} turns.")
+
+  #if guess_collum < 0 or guess_collum >= size or guess_collum < 0 or guess_collum >= size:
+            #print("Oops, that's not even in the ocean.")
+
+
+while True:
+    global state
+    print_board()
+    state = ""
+    choice = input ("what is your choice?").upper()
+    if choice in collum1:
+        spot = collum1.index(choice)
+        if spot == -1:
+            print("spot already guessed")
+        else:
+            collum1[spot]=answer[spot]
+            if answer[spot]=="M":
+                misses+=1
+                turns+=1
+                print("aw man you missed my battleship :( ")
+                print (misses)
+                print (turns)
+            else:
+                answer[spot]=="H"
+                hits+=1
+                turns+=1 
+                print("WooHoo you hit my battleship!")
+                print (hits)
+                print (turns)
+    else:
+        print ("bad input")
+
+    if choice == "cheat":
+        print ("hey alright lets see where those ships are then hm?")
+        
+        
+    if state == "no":
+        print(" Alright, Keep Playing :) ")
+
+    state = (input("Would you like to leave?")).capitalize()
+
+
+#Exit statement
+    
+    if state== " YES ":
+        sys.exit()
+
