@@ -1,0 +1,60 @@
+# Made By Reese Kendall
+# Feb 29th 2024
+# To Work Out Grades And Students and Such
+
+import sys
+
+
+
+Students = [{"Bob" , 99 , 65 , 85 , 76 , 69} , {"Mike" , 67 , 75 , 77 , 40 , 90} , {"Oliver" , 88 , 90 , 92 , 98 , 100} , {"Ben" , 46 , 51 , 56 , 33 , 78}]
+Classes = [{"Science" , "Math" , "Gym" , "Technology" , "Art" }]
+Time = [{"Period 1" , "Period 2" , "Period 3" , "Period4" "Period5"}]
+Day = [{"Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday"}]
+
+def class_1(): 
+ Students [{0 , 1 , 6 , 7 , 12 , 13 , 18 , 19}]
+ Classes [{0}]
+ Time [{0}]
+ Day [{0}]
+
+def class_2():
+ Students [{0 , 2 , 6 , 8 , 12 , 14 , 18 , 20}]
+ Classes [{1}]
+ Time [{1}]
+ Day [{1}]
+
+def class_3():
+ Students [{0 , 3 , 6 , 9 , 12 , 15 , 18 , 21}]
+ Classes [{2}]
+ Time [{2}]
+ Day [{2}]
+
+def class_4():
+ Students [{0 , 4 , 6 , 10 , 12 , 16 , 18 , 22}]
+ Classes [{3}]
+ Time [{3}]
+ Day [{3}]
+
+def class_5():
+ Students [{0 , 5 , 6 , 11 , 12 , 17 , 18 , 23}]
+ Classes [{4}]
+ Time [{4}]
+ Day [{4}]
+ 
+
+print ( "Would you like to add a student to the list??? ")
+
+print ( "Would you like to add a class to the list???" )
+
+print ( "Would you like to add a different time to the list???" )
+
+print ( "Would you like to add a different day to the list???" )
+
+
+def student_average():
+ 
+
+
+
+
+sys.exit()
