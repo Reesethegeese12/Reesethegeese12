@@ -1,0 +1,39 @@
+#Date: April 2nd 2024
+
+#Made by: Reese Kendall
+
+#Purpose: Create a program that allows use to enter in a list of name.  
+#Have the program start with a pre-entered list of 15 name. 
+#Afterwards the user should be able to sort the list (use one of the new sort methods) 
+#and be able to search to see if the name is already in the list (use a binary search).
+
+def names():
+ names = [ "Alice", "Bob", "Charlie", "David", "Emma", "Frank", "Grace", "Hannah", "Ian", "Jack", "Katie", "Liam", "Mia", "Nathan", "Olivia"]
+
+while True:
+        print("1. Search for a Name")
+
+        print("2. Sort the Names list Alphabetically")
+
+        print("3. Display the Names list")
+
+        print("4. Exit The Program")
+
+        choice = input ("Enter your choice From the Names List: ")
+
+        if choice == "1":
+            names = input("Enter the Name to search for: ")
+
+        elif choice == "2":
+         names.sort()
+         print("List sorted successfully.")
+
+        elif choice == "3":
+         print (names)
+
+        elif choice == "4":
+         print("Exiting program.")
+         break
+else:
+#print("Invalid choice. Please try again.")
+ pass
