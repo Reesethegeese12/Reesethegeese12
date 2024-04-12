@@ -1,60 +1,177 @@
 # Made By Reese Kendall
-# Feb 29th 2024
+
+# April 12th 2024
+
 # To Work Out Grades And Students and Such
 
-import sys
+#import sys
 
+import sqlite3 
 
+connection = sqlite3.connect('database_name.db')
 
-Students = [{"Bob" , 99 , 65 , 85 , 76 , 69} , {"Mike" , 67 , 75 , 77 , 40 , 90} , {"Oliver" , 88 , 90 , 92 , 98 , 100} , {"Ben" , 46 , 51 , 56 , 33 , 78}]
-Classes = [{"Science" , "Math" , "Gym" , "Technology" , "Art" }]
-Time = [{"Period 1" , "Period 2" , "Period 3" , "Period4" "Period5"}]
-Day = [{"Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday"}]
+cursor = connection.cursor()
 
-def class_1(): 
- Students [{0 , 1 , 6 , 7 , 12 , 13 , 18 , 19}]
- Classes [{0}]
- Time [{0}]
- Day [{0}]
+connection.close()
 
-def class_2():
- Students [{0 , 2 , 6 , 8 , 12 , 14 , 18 , 20}]
- Classes [{1}]
- Time [{1}]
- Day [{1}]
+def create_connection(db_file):
+    
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+    except Exception as e:
+        print(e)
+    return conn
 
-def class_3():
- Students [{0 , 3 , 6 , 9 , 12 , 15 , 18 , 21}]
- Classes [{2}]
- Time [{2}]
- Day [{2}]
+connection = create_connection('database_name.db')
 
-def class_4():
- Students [{0 , 4 , 6 , 10 , 12 , 16 , 18 , 22}]
- Classes [{3}]
- Time [{3}]
- Day [{3}]
+if connection is not None:
+    #commands 
+   pass
+else:
+  print("Error! cannot create database connection")
 
-def class_5():
- Students [{0 , 5 , 6 , 11 , 12 , 17 , 18 , 23}]
- Classes [{4}]
- Time [{4}]
- Day [{4}]
- 
+sql = "create table if Students doesn't exist ( id INTEGER PRIMARY KEY, second TEXT,third REAL )"
 
-print ( "Would you like to add a student to the list??? ")
+sql = "SELECT id, second, third from Students"
 
-print ( "Would you like to add a class to the list???" )
+sql = "INSERT INTO Students (second, third) VALUES(?, ?)"
 
-print ( "Would you like to add a different time to the list???" )
+sql = f"UPDATE Students set second = 'sandra' where ID = 6"
 
-print ( "Would you like to add a different day to the list???" )
+sql= "SELECT * FROM Students WHERE id =?"
 
+data_input = ("Student",12.2)
 
-def student_average():
- 
+connection.execute(sql,data_input)
 
+connection.commit()
 
+connection.execute(sql)
 
+cursor = connection.execute(sql)
 
-sys.exit()
+for row in cursor:
+        print (f"Grade =  {row[0]}")
+        print (f"seocond = {row[1]}")
+        print (f"Average = {row[2]}")
+
+cursor = connection.execute(sql,(4))
+
+connection.execute(sql)
+
+connection.commit()
+
+connection.execute('''DELETE FROM Students WHERE id = ?''',(6,))
+
+connection.commit()
+
+Students = [[ "Bob" , 99 , 65 , 85 , 76 , 69], 
+            ["Mike" , 67 , 75 , 77 , 40, 77], 
+            ["Oliver" , 88 , 90 , 92 , 98 , 100],
+            ["Ben" , 46 , 51 , 56 , 33 , 78], 
+            ["Tom", 80 , 80 , 80 , 80 , 90]]
+Classes = [ "Science" , "Math" , "Gym" , "Technology" , "Art" ]
+
+def output():
+
+ for student in Students:
+
+  print(f"Name: {student[0]} {Classes[0]}: {student[1]} {Classes[1]}: {student[2]} {Classes[2]}: {student[3]} {Classes[3]}: {student[4]} {Classes[4]}: {student[5]}")
+
+def add():
+    try:
+      name = input( " what is your name??? " ).capitalize()
+      print (name)
+
+      m1 = float(input(" What is their first grade for their first class??? "))
+      print (m1)
+
+      m2 = float(input( " What is their first grade for their second class???" ))
+      print (m2)
+
+      m3 = float(input( " What is their first grade for their third class???" ))
+      print (m3)
+
+      m4 = float(input( " What is their first grade for their fourth class???" ))
+      print (m4)
+
+      m5 = float(input( " What is their first grade for their fifth class???" ))
+      print (m5)
+
+      Students.append([name, m1, m2, m3, m4, m5])
+    except:
+      print ("Please input Numbers and not anything else")
+
+def Text():
+    total_course_1=0
+
+    total_course_2=0
+
+    total_course_3=0
+
+    total_course_4=0
+
+    total_course_5=0
+
+    for row in Students:
+
+     total_course_1 += row[1] 
+
+     total_course_2 += row[2] 
+
+     total_course_3 += row[3] 
+
+     total_course_4 += row[4] 
+
+     total_course_5 += row[5]
+
+    avg_c1 = total_course_1 / len(Students)
+    print ("Science Average:")
+    print (avg_c1)
+
+    avg_c2 = total_course_2 / len(Students)
+    print ("Math Average:")
+    print (avg_c2)
+
+    avg_c3 = total_course_3 / len(Students)
+    print ("Gym Average:")
+    print (avg_c3)
+
+    avg_c4 = total_course_4 / len(Students)
+    print ("Technology Average:")
+    print (avg_c4)
+
+    avg_c5 = total_course_5 / len(Students)
+    print ("Art Average:")
+    print (avg_c5)   
+
+def Text2():
+
+ for student in Students:
+  print(f"Name: {student[0]} {(student[1]+student[2]+student[3]+student[4]+student[5])/5}")
+
+def explamation():
+ print ("Welcome! this code is pretty self explanitory! It is meant for you to add a new student with their grades \n and calculate thier average anf the average of the class :)")
+
+run = True
+
+while run:
+
+    explamation()
+
+    add()
+
+    output()
+
+    Text()
+
+    Text2()
+
+    spot = input ("Would you Like to add another student???:")
+
+    if spot == "Y" or spot=="y" or spot== "Yes" or spot== "YES" or spot=="yes":
+        run=True
+    else:
+       if spot == "N" or spot=="n" or spot== "No" or spot== "NO" or spot=="nope" or spot== "Nope":
+            run=False
